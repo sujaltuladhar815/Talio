@@ -7,4 +7,8 @@ app.get('/', (req, res) => {
   res.json({ message: 'Server is running' });
 });
 
+app.get('/health', (req, res) => {
+  res.json({ status: 'OK' });
+});
+
 module.exports = app;
