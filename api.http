@@ -1,2 +1,19 @@
 ### health check up
 GET http://localhost:5000/health
+
+### Register a user
+POST http://localhost:5000/api/auth
+Content-Type: application/json
+
+{
+  "name": "Sujal Tuladhar",
+  "username": "sujal",
+  "email": "sujal@example.com",
+  "password": "Password@123",
+  "phone": "9800000000",
+  "avatar": "https://example.com/avatar.png",
+  "headline": "Full Stack Developer",
+  "bio": "Building things with the MERN stack.",
+  "location": "Kathmandu, Nepal",
+  "visibility": "public"
+}
