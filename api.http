@@ -17,3 +17,42 @@ Content-Type: application/json
   "location": "Kathmandu, Nepal",
   "visibility": "public"
 }
+
+{
+  "name": "Anita Sharma",
+  "username": "anita_sharma",
+  "email": "anita.sharma@example.com",
+  "password": "Secure@456",
+  "phone": "9811111111",
+  "avatar": "https://example.com/avatars/anita.png",
+  "headline": "UI/UX Designer",
+  "bio": "Designing clean, user-friendly interfaces for web and mobile.",
+  "location": "Pokhara, Nepal",
+  "visibility": "public"
+}
+
+{
+  "name": "Rohan Thapa",
+  "username": "rohan_thapa",
+  "email": "rohan.thapa@example.com",
+  "password": "Rohan@789",
+  "phone": "9822222222",
+  "avatar": "https://example.com/avatars/rohan.png",
+  "headline": "Backend Developer",
+  "bio": "Node.js and MongoDB enthusiast.",
+  "location": "Lalitpur, Nepal",
+  "visibility": "private"
+}
+
+{
+  "name": "Sita Rai",
+  "username": "sita_rai",
+  "email": "sita.rai@example.com",
+  "password": "Sita@2024",
+  "phone": "9833333333",
+  "avatar": "https://example.com/avatars/sita.png",
+  "headline": "Data Analyst",
+  "bio": "Turning data into useful insights.",
+  "location": "Biratnagar, Nepal",
+  "visibility": "public"
+}
