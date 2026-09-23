@@ -5,10 +5,11 @@ const register = async (req, res) => {
     try {
         const userData = req.body;
         const newUser = await authServices.register(userData);
-        const token = jwt.generateToken(loginUser);
+        const token = jwt.generateToken({ id: newUser.id, role: newUser.role });
 
         res.cookie('authToken', token, {
-            maxAge: 86400000, // 1 day in milliseconds
+            maxAge: 86400000,
+            httpOnly: true
         })
 
         res.status(201).json(newUser);
@@ -21,10 +22,11 @@ const login = async (req, res) => {
     try {
         const loginData = req.body;
         const loginUser = await authServices.login(loginData);
-        const token = jwt.generateToken(loginUser);
+        const token = jwt.generateToken({ id: loginUser.id, role: loginUser.role });
 
         res.cookie('authToken', token, {
-            maxAge: 86400000, // 1 day in milliseconds
+            maxAge: 86400000,
+            httpOnly: true
         })
 
         res.status(200).json({ ...loginUser, token });

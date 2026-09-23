@@ -2,10 +2,11 @@ const jwt = require('jsonwebtoken');
 const config = require('../config/config');
 
 const generateToken = (data) => {
-    const token = jwt.sign(data, config.JWT_SECRET);
-    return token;
+    return jwt.sign(data, config.JWT_SECRET, { expiresIn: '1d' });
 };
 
-module.exports = {
-    generateToken,
+const verifyToken = (token) => {
+    return jwt.verify(token, config.JWT_SECRET);
 };
+
+module.exports = { generateToken, verifyToken };
