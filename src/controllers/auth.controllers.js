@@ -29,13 +29,19 @@ const login = async (req, res) => {
             httpOnly: true
         })
 
-        res.status(200).json({ ...loginUser, token });
+        res.status(200).json(loginUser);
     } catch (error) {
         res.status(401).json({ error: error.message });
     }
 };
 
+const logout = (req, res) => {
+    res.clearCookie('authToken');
+    res.status(200).json({ message: 'Logged out successfully' });
+};
+
 module.exports = {
     register,
     login,
+    logout
 };
