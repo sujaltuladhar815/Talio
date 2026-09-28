@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
+const AppError = require('../utils/AppError');
 
 const toPublicUser = (user) => ({
     id: user._id,
@@ -15,6 +16,12 @@ const toPublicUser = (user) => ({
 });
 
 const register = async (userData) => {
+    if (!userData?.password) {
+        throw new AppError('Validation failed', 400, [
+            { field: 'password', message: 'Password is required' },
+        ]);
+    }
+
     const hashPassword = await bcrypt.hash(userData.password, 10);
 
     const user = await User.create({
@@ -22,27 +29,27 @@ const register = async (userData) => {
         username: userData.username,
         email: userData.email,
         password: hashPassword,
-        phone: userData.phone,
-        avatar: userData.avatar,
-        headline: userData.headline,
-        bio: userData.bio,
-        location: userData.location
+        phone: userData.phone
     });
 
     return toPublicUser(user);
 };
 
 const login = async (loginData) => {
+    if (!loginData?.email || !loginData?.password) {
+        throw new AppError('Email and password are required', 400);
+    }
+
     const user = await User.findOne({ email: loginData.email }).select('+password');
     if (!user) {
-        throw new Error('Invalid credentials');
+        throw new AppError('Invalid credentials', 401);
     }
     const isMatch = await bcrypt.compare(loginData.password, user.password);
     if (!isMatch) {
-        throw new Error('Invalid credentials');
+        throw new AppError('Invalid credentials', 401);
     }
     if (user.status === 'suspended') {
-        throw new Error('Account suspended');
+        throw new AppError('Account suspended', 403);
     }
     return toPublicUser(user);
 };
