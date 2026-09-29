@@ -9,9 +9,6 @@ const auth = (req, res, next) => {
     if (!token) {
         return next(new AppError('Unauthorized', 401));
     }
-
-    // verifyToken throws JsonWebTokenError / TokenExpiredError;
-    // the central handler maps them to 401.
     req.user = jwt.verifyToken(token);
     next();
 };

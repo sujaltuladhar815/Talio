@@ -41,6 +41,7 @@ const UserSchema = new mongoose.Schema({
     },
     phone: {
         type: String,
+        unique: true,
         trim: true,
         validate: {
             validator: (value) => /^\d{10}$/.test(value),

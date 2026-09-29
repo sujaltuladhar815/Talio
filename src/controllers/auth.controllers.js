@@ -9,7 +9,7 @@ const register = catchAsync(async (req, res) => {
     const token = jwt.generateToken({ id: newUser.id, role: newUser.role });
 
     res.cookie('authToken', token, cookieOptions);
-    res.status(201).json(newUser);
+    res.status(201).json({message: 'User registered successfully'});
 });
 
 const login = catchAsync(async (req, res) => {
@@ -17,7 +17,7 @@ const login = catchAsync(async (req, res) => {
     const token = jwt.generateToken({ id: loginUser.id, role: loginUser.role });
 
     res.cookie('authToken', token, cookieOptions);
-    res.status(200).json(loginUser);
+    res.status(200).json({message: 'User logged in successfully'});
 });
 
 const logout = (req, res) => {

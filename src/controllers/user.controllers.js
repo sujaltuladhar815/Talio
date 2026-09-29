@@ -6,12 +6,12 @@ const getAllUsers = catchAsync(async (req, res) => {
   res.status(200).json(users);
 });
 
-const getUserById = catchAsync(async (req, res) => {
-  const user = await userService.getUserById(req.params.id);
+const getMe = catchAsync(async (req, res) => {
+  const user = await userService.getMe(req.user.id);
   res.status(200).json(user);
 });
 
 module.exports = {
   getAllUsers,
-  getUserById,
+  getMe,
 };
